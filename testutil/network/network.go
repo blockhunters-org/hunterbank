@@ -19,15 +19,15 @@ import (
 	tmrand "github.com/tendermint/tendermint/libs/rand"
 	tmdb "github.com/tendermint/tm-db"
 
+	"github.com/blockhunters-org/hunterbank/app"
+	"github.com/blockhunters-org/hunterbank/cmd"
+	"github.com/blockhunters-org/hunterbank/testutil"
 	cryptocodec "github.com/cosmos/cosmos-sdk/crypto/codec"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 	genutil "github.com/cosmos/cosmos-sdk/x/genutil"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	ccvconsumertypes "github.com/cosmos/interchain-security/x/ccv/consumer/types"
-	"github.com/blockhunters-org/hunterbank/app"
-	"github.com/blockhunters-org/hunterbank/cmd"
-	"github.com/blockhunters-org/hunterbank/testutil"
 	types1 "github.com/tendermint/tendermint/abci/types"
 	tmtypes "github.com/tendermint/tendermint/types"
 )
