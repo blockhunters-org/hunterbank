@@ -1,5 +1,5 @@
-# strange
-**strange** is a blockchain built using Cosmos SDK and Tendermint
+# hunterbank
+**hunterbank** is a blockchain built using Cosmos SDK and Tendermint
 
 ## Get started
 
@@ -16,23 +16,23 @@ make install
 Come up with a moniker for your node, then run:
 
 ```
-stranged init $MONIKER
+hunterbankd init $MONIKER
 ```
  
  
  
 ## Launch with genesis file or run as standalone chain
 
-To launch as a consumer chain, download and save shared genesis file to `~/.strange/config/genesis.json`. Additionally add peering information (`persistent_peers` or `seeds`) to `~/.strange/config/config.toml`
+To launch as a consumer chain, download and save shared genesis file to `~/.hunterbank/config/genesis.json`. Additionally add peering information (`persistent_peers` or `seeds`) to `~/.hunterbank/config/config.toml`
 
 To instead launch as a standalone, single node chain, run:
 
 ```
-stranged add-consumer-section
+hunterbankd add-consumer-section
 ```
 
 ## Launch node
 
 ```
-stranged start
+hunterbankd start
 ```

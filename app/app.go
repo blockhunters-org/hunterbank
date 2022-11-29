@@ -88,13 +88,13 @@ import (
 	tmos "github.com/tendermint/tendermint/libs/os"
 	dbm "github.com/tendermint/tm-db"
 
-	"github.com/strangelove-ventures/strange/cmd"
+	"github.com/blockhunters-org/hunterbank/cmd"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
 const (
 	AccountAddressPrefix = "cosmos"
-	Name                 = "strange"
+	Name                 = "hunterbank"
 )
 
 // this line is used by starport scaffolding # stargate/wasm/app/enabledProposals

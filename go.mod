@@ -1,4 +1,4 @@
-module github.com/strangelove-ventures/strange
+module github.com/blockhunters-org/hunterbank
 
 go 1.18
 

@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/strangelove-ventures/strange/app"
-	"github.com/strangelove-ventures/strange/cmd"
+	"github.com/blockhunters-org/hunterbank/app"
+	"github.com/blockhunters-org/hunterbank/cmd"
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"

@@ -5,16 +5,16 @@ import (
 
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 
-	"github.com/strangelove-ventures/strange/app"
-	"github.com/strangelove-ventures/strange/cmd"
+	"github.com/blockhunters-org/hunterbank/app"
+	"github.com/blockhunters-org/hunterbank/cmd"
 )
 
 func main() {
 	rootCmd, _ := cmd.NewRootCmd(
-		"strange",
+		"hunterbank",
 		"cosmos",
 		app.DefaultNodeHome,
-		"strange-1",
+		"hunterbank-1",
 		app.ModuleBasics,
 		app.New,
 		// this line is used by starport scaffolding # root/arguments

@@ -10,8 +10,8 @@ import (
 	"github.com/cosmos/interchain-security/tests/e2e"
 	e2etestutil "github.com/cosmos/interchain-security/testutil/e2e"
 	icssimapp "github.com/cosmos/interchain-security/testutil/simapp"
-	appConsumer "github.com/strangelove-ventures/strange/app"
-	"github.com/strangelove-ventures/strange/cmd"
+	appConsumer "github.com/blockhunters-org/hunterbank/app"
+	"github.com/blockhunters-org/hunterbank/cmd"
 	"github.com/stretchr/testify/suite"
 	"github.com/tendermint/tendermint/libs/log"
 	dbm "github.com/tendermint/tm-db"
@@ -37,7 +37,7 @@ func TestCCVTestSuite(t *testing.T) {
 	suite.Run(t, ccvSuite)
 }
 
-// NewCoordinator initializes Coordinator with interchain security dummy provider and strange consumer chain
+// NewCoordinator initializes Coordinator with interchain security dummy provider and hunterbank consumer chain
 func NewProviderConsumerCoordinator(t *testing.T) (*ibctesting.Coordinator, *ibctesting.TestChain, *ibctesting.TestChain) {
 	coordinator := icssimapp.NewBasicCoordinator(t)
 	chainID := ibctesting.GetChainID(1)
