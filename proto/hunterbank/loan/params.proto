@@ -1,0 +1,12 @@
+syntax = "proto3";
+package blockhuntersorg.hunterbank.loan;
+
+import "gogoproto/gogo.proto";
+
+option go_package = "github.com/blockhunters-org/hunterbank/x/loan/types";
+
+// Params defines the parameters for the module.
+message Params {
+  option (gogoproto.goproto_stringer) = false;
+  
+}

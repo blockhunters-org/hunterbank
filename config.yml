@@ -1,0 +1,12 @@
+version: 1
+accounts:
+  - name: alice
+    coins: ["20000hunt", "200000000steak", "1000000bucks"]
+  - name: bob
+    coins: ["10000hunt", "100000000steak", "1000bucks"]
+validators:
+  - name: alice
+    bonded: "100000000stake"
+faucet:
+  name: bob
+  coins: ["5hunt", "100000steak", "1bucks"]
