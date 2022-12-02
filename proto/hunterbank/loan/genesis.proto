@@ -1,0 +1,17 @@
+syntax = "proto3";
+package blockhuntersorg.hunterbank.loan;
+
+import "gogoproto/gogo.proto";
+import "hunterbank/loan/params.proto";
+import "hunterbank/loan/loan.proto";
+// this line is used by starport scaffolding # genesis/proto/import
+
+option go_package = "github.com/blockhunters-org/hunterbank/x/loan/types";
+
+// GenesisState defines the loan module's genesis state.
+message GenesisState {
+  Params params = 1 [(gogoproto.nullable) = false];
+  repeated Loan loanList = 2 [(gogoproto.nullable) = false];
+  uint64 loanCount = 3;
+  // this line is used by starport scaffolding # genesis/proto/state
+}
