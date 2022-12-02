@@ -4,11 +4,11 @@ import (
 	"encoding/json"
 	"testing"
 
+	"github.com/blockhunters-org/hunterbank/app"
+	"github.com/blockhunters-org/hunterbank/cmd"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	ibctesting "github.com/cosmos/ibc-go/v3/testing"
 	icssimapp "github.com/cosmos/interchain-security/testutil/simapp"
-	"github.com/blockhunters-org/hunterbank/app"
-	"github.com/blockhunters-org/hunterbank/cmd"
 	"github.com/stretchr/testify/require"
 	"github.com/tendermint/tendermint/libs/log"
 	tmdb "github.com/tendermint/tm-db"

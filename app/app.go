@@ -89,6 +89,9 @@ import (
 	dbm "github.com/tendermint/tm-db"
 
 	"github.com/blockhunters-org/hunterbank/cmd"
+	loanmodule "github.com/blockhunters-org/hunterbank/x/loan"
+	loanmodulekeeper "github.com/blockhunters-org/hunterbank/x/loan/keeper"
+	loanmoduletypes "github.com/blockhunters-org/hunterbank/x/loan/types"
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 )
 
@@ -136,6 +139,8 @@ var (
 				upgraderest.ProposalCancelRESTHandler,
 			),
 		),
+		loanmodule.AppModuleBasic{},
+		// this line is used by starport scaffolding # stargate/app/moduleBasic
 	)
 
 	// module account permissions
@@ -145,6 +150,8 @@ var (
 		ibctransfertypes.ModuleName:                   {authtypes.Minter, authtypes.Burner},
 		ccvconsumertypes.ConsumerRedistributeName:     nil,
 		ccvconsumertypes.ConsumerToSendToProviderName: nil,
+		loanmoduletypes.ModuleName:                    {authtypes.Minter, authtypes.Burner, authtypes.Staking},
+		// this line is used by starport scaffolding # stargate/app/maccPerms
 	}
 )
 
@@ -203,6 +210,9 @@ type App struct {
 	ScopedICAHostKeeper     capabilitykeeper.ScopedKeeper
 	ScopedCCVConsumerKeeper capabilitykeeper.ScopedKeeper
 
+	LoanKeeper loanmodulekeeper.Keeper
+	// this line is used by starport scaffolding # stargate/app/keeperDeclaration
+
 	// mm is the module manager
 	mm *module.Manager
 
@@ -238,6 +248,8 @@ func New(
 		paramstypes.StoreKey, ibchost.StoreKey, upgradetypes.StoreKey, feegrant.StoreKey, evidencetypes.StoreKey,
 		ibctransfertypes.StoreKey, icahosttypes.StoreKey, capabilitytypes.StoreKey, ccvconsumertypes.StoreKey,
 		adminmodulemoduletypes.StoreKey,
+		loanmoduletypes.StoreKey,
+		// this line is used by starport scaffolding # stargate/app/storeKey
 	)
 	tkeys := sdk.NewTransientStoreKeys(paramstypes.TStoreKey)
 	memKeys := sdk.NewMemoryStoreKeys(capabilitytypes.MemStoreKey)
@@ -413,6 +425,16 @@ func New(
 	)
 	adminModule := adminmodulemodule.NewAppModule(appCodec, app.AdminmoduleKeeper)
 
+	app.LoanKeeper = *loanmodulekeeper.NewKeeper(
+		appCodec,
+		keys[loanmoduletypes.StoreKey],
+		keys[loanmoduletypes.MemStoreKey],
+		app.GetSubspace(loanmoduletypes.ModuleName),
+
+		app.BankKeeper,
+	)
+	loanModule := loanmodule.NewAppModule(appCodec, app.LoanKeeper, app.AccountKeeper, app.BankKeeper)
+
 	// Create static IBC router, add transfer route, then set and seal it
 	ibcRouter := ibcporttypes.NewRouter()
 	ibcRouter.AddRoute(icahosttypes.SubModuleName, icaHostIBCModule).
@@ -447,6 +469,8 @@ func New(
 		icaModule,
 		consumerModule,
 		adminModule,
+		loanModule,
+		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -471,6 +495,8 @@ func New(
 		vestingtypes.ModuleName,
 		ccvconsumertypes.ModuleName,
 		adminmodulemoduletypes.ModuleName,
+		loanmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/beginBlockers
 	)
 
 	app.mm.SetOrderEndBlockers(
@@ -490,6 +516,8 @@ func New(
 		vestingtypes.ModuleName,
 		ccvconsumertypes.ModuleName,
 		adminmodulemoduletypes.ModuleName,
+		loanmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/endBlockers
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -514,6 +542,8 @@ func New(
 		vestingtypes.ModuleName,
 		ccvconsumertypes.ModuleName,
 		adminmodulemoduletypes.ModuleName,
+		loanmoduletypes.ModuleName,
+		// this line is used by starport scaffolding # stargate/app/initGenesis
 	)
 
 	// Uncomment if you want to set a custom migration order here.
@@ -537,6 +567,8 @@ func New(
 		evidence.NewAppModule(app.EvidenceKeeper),
 		ibc.NewAppModule(app.IBCKeeper),
 		transferModule,
+		loanModule,
+		// this line is used by starport scaffolding # stargate/app/appModule
 	)
 	app.sm.RegisterStoreDecoders()
 
@@ -731,6 +763,8 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(ibchost.ModuleName)
 	paramsKeeper.Subspace(icahosttypes.SubModuleName)
 	paramsKeeper.Subspace(ccvconsumertypes.ModuleName)
+	paramsKeeper.Subspace(loanmoduletypes.ModuleName)
+	// this line is used by starport scaffolding # stargate/app/paramSubspace
 
 	return paramsKeeper
 }
