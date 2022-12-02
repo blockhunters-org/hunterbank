@@ -10,4 +10,5 @@ import (
 var (
 	ErrWrongLoanState = sdkerrors.Register(ModuleName, 2, "wrong loan state")
 	ErrDeadline       = sdkerrors.Register(ModuleName, 3, "deadline")
+	ErrSample = sdkerrors.Register(ModuleName, 1100, "sample error")
 )
